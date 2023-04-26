@@ -41,6 +41,7 @@
     "babel-loader": "^8.3.0",
     "eslint-plugin-storybook": "^0.6.11"
   },
+  
   "resolutions": {
     "@storybook/react-docgen-typescript-plugin": "1.0.6--canary.9.cd77847.0"
   }
