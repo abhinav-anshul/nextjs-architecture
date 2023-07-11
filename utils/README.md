@@ -1,0 +1,1 @@
+The utils folder can be used for a variety of things, such as reusable library instances, some dummy data, or reusable utility functions.
