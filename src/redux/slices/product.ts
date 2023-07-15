@@ -3,7 +3,7 @@ import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 // utils
-import axios from '../../utils/axios';
+import axios from '../../services/axios/api';
 import { IProductState, ICheckoutCartItem } from '../../@types/product';
 
 // ----------------------------------------------------------------------

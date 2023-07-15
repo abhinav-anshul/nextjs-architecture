@@ -2,7 +2,7 @@ import omit from 'lodash/omit';
 import keyBy from 'lodash/keyBy';
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 // utils
-import axios from '../../utils/axios';
+import axios from '../../services/axios/api';
 // @types
 import { IKanbanState, IKanbanCard, IKanbanColumn } from '../../@types/kanban';
 
