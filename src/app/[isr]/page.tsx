@@ -1,6 +1,6 @@
 import { RenderingInfo } from '#/ui/rendering-info';
 
-
+//this is also another way to use
 // ------1
 // export const revalidate = 3600 // revalidate every hour
 // ------2
