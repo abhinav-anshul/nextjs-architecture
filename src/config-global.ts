@@ -5,7 +5,7 @@ import { PATH_DASHBOARD } from './routes/paths';
 // ----------------------------------------------------------------------
 
 export const HOST_API_KEY =
-  process.env.HOST_API_KEY || 'https://jsonplaceholder.typicode.com';
+  process.env.HOST_API_KEY || '';
 
 export const FIREBASE_API = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -31,3 +31,4 @@ export const MAP_API = process.env.MAPBOX_API;
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
 export const PATH_AFTER_LOGIN = HOST_API_KEY; // as '/dashboard/app'
+export const LOCALHOST_PORT = process.env.LOCALHOST+":"+process.env.PORT
