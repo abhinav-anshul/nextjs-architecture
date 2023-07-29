@@ -2,15 +2,16 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ColorButtons as  Button } from './index';
+import UiButton from './index';
 import { IButtonProps } from './types';
 
-const meta: Meta<typeof Button> = {
-  component: Button,
+const meta: Meta<typeof UiButton> = {
+  title: 'Components/Buttons',
+  component: UiButton,
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof UiButton>;
 
 /*
  *👇 Render functions are a framework specific feature to allow you control on how the component renders.
@@ -18,35 +19,61 @@ type Story = StoryObj<typeof Button>;
  * to learn how to use render functions.
  */
 
-
- export const Primary : Story = {
-  args: {
-    sx:{bgcolor:"red"},
-    className: 'bg-rose-400',
-    label: 'test number one click here',
-    color:"primary"
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    ...Primary.args,
-    color:"success",
-    label: '😄👍😍💯',
-  },
-};
-
-
-
-export const Error: Story = {
-  render: () => <Button color='error' sx={{bgcolor:"red"}}  label="Buttoooon3" className='bg-rose-400'/>,
-};
-export const Success: Story = {
-  render: () => <Button color='success' sx={{bgcolor:"success"}} label="Button4" className='bg-green-500'  variant='contained'/>,
-};
-export const Info: Story = {
-  render: () => <Button color='info' sx={{bgcolor:"blue"}}  label="Button5" className='bg-blue-500'  variant='text' />,
-};
-export const warning: Story = {
-  render: () => <Button color='warning' sx={{bgcolor:"yellow"}}  label="Button6" className='bg-yellow-500' variant='outlined' />,
+export const Button: Story = {
+  render: () => (
+    <div style={{ textAlign: 'end' }}>
+      <div>
+        <h2>دکمه های اصلی</h2>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="ثبت" variant="contained" />
+          <UiButton text="ثبت" variant="outlined" />
+          <UiButton text="ثبت" variant="text" />
+        </div>
+      </div>
+      <div>
+        <h2>دکمه های غیرفعال</h2>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="غیرفعال" variant="contained" disabled />
+          <UiButton text="غیرفعال" variant="outlined" disabled />
+          <UiButton text="غیرفعال" variant="text" disabled />
+        </div>
+      </div>
+      <div>
+        <h2>سایز دکمه ها</h2>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="ثبت" variant="contained" size="small" />
+          <UiButton text="ثبت" variant="contained" size="medium" />
+          <UiButton text="ثبت" variant="contained" size="large" />
+        </div>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="ثبت" variant="outlined" size="small" />
+          <UiButton text="ثبت" variant="outlined" size="medium" />
+          <UiButton text="ثبت" variant="outlined" size="large" />
+        </div>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="ثبت" variant="text" size="small" />
+          <UiButton text="ثبت" variant="text" size="medium" />
+          <UiButton text="ثبت" variant="text" size="large" />
+        </div>
+      </div>
+      <div>
+        <h2>رنگ ها</h2>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="ثبت" variant="contained" color="success" />
+          <UiButton text="ثبت" variant="contained" color="error" />
+          <UiButton text="ثبت" variant="contained" color="secondary" />
+        </div>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="ثبت" variant="outlined" color="success" />
+          <UiButton text="ثبت" variant="outlined" color="error" />
+          <UiButton text="ثبت" variant="outlined" color="secondary" />
+        </div>
+        <div style={{ display: 'flex ', justifyContent: 'center' }}>
+          <UiButton text="ثبت" variant="text" color="success" />
+          <UiButton text="ثبت" variant="text" color="error" />
+          <UiButton text="ثبت" variant="text" color="secondary" />
+        </div>
+      </div>
+    </div>
+  ),
 };

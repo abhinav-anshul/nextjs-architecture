@@ -1,14 +1,14 @@
-import type { NextApiRequest } from 'next'
-import type { NextFetchEvent, NextRequest } from 'next/server'
+import type { NextApiRequest } from 'next';
+import type { NextFetchEvent, NextRequest } from 'next/server';
 
 export const initAnalytics = ({
   request,
-  event
+  event,
 }: {
-  request: NextRequest | NextApiRequest | Request
-  event?: NextFetchEvent
+  request: NextRequest | NextApiRequest | Request;
+  event?: NextFetchEvent;
 }) => {
-  const endpoint = process.env.VERCEL_URL
+  const endpoint = process.env.VERCEL_URL;
 
   return {
     track: async (eventName: string, data?: any) => {
@@ -16,23 +16,23 @@ export const initAnalytics = ({
         if (!endpoint && process.env.NODE_ENV === 'development') {
           console.log(
             `[Vercel Web Analytics] Track "${eventName}"` +
-              (data ? ` with data ${JSON.stringify(data || {})}` : '')
-          )
-          return
+              (data ? ` with data ${JSON.stringify(data || {})}` : ''),
+          );
+          return;
         }
 
-        const headers: { [key: string]: string } = {}
+        const headers: { [key: string]: string } = {};
         Object.entries(request.headers).map(([key, value]) => {
-          headers[key] = value
-        })
+          headers[key] = value;
+        });
 
         const body = {
           o: headers.referer,
           ts: new Date().getTime(),
           r: '',
           en: eventName,
-          ed: data
-        }
+          ed: data,
+        };
 
         const promise = fetch(
           `https://${process.env.VERCEL_URL}/_vercel/insights/event`,
@@ -41,22 +41,22 @@ export const initAnalytics = ({
               'content-type': 'application/json',
               'user-agent': headers['user-agent'] as string,
               'x-forwarded-for': headers['x-forwarded-for'] as string,
-              'x-va-server': '1'
+              'x-va-server': '1',
             },
             body: JSON.stringify(body),
-            method: 'POST'
-          }
-        )
+            method: 'POST',
+          },
+        );
 
         if (event) {
-          event.waitUntil(promise)
+          event.waitUntil(promise);
         }
         {
-          await promise
+          await promise;
         }
       } catch (err) {
-        console.error(err)
+        console.error(err);
       }
-    }
-  }
-}
+    },
+  };
+};

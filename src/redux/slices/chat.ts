@@ -66,8 +66,15 @@ const slice = createSlice({
     // ON SEND MESSAGE
     sendMessage(state, action) {
       const conversation = action.payload;
-      const { conversationId, messageId, message, contentType, attachments, createdAt, senderId } =
-        conversation;
+      const {
+        conversationId,
+        messageId,
+        message,
+        contentType,
+        attachments,
+        createdAt,
+        senderId,
+      } = conversation;
 
       const newMessage = {
         id: messageId,
@@ -111,7 +118,8 @@ const slice = createSlice({
 export default slice.reducer;
 
 // Actions
-export const { addRecipients, sendMessage, resetActiveConversation } = slice.actions;
+export const { addRecipients, sendMessage, resetActiveConversation } =
+  slice.actions;
 
 // ----------------------------------------------------------------------
 
@@ -134,7 +142,9 @@ export function getConversations() {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/chat/conversations');
-      dispatch(slice.actions.getConversationsSuccess(response.data.conversations));
+      dispatch(
+        slice.actions.getConversationsSuccess(response.data.conversations),
+      );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
@@ -150,7 +160,9 @@ export function getConversation(conversationKey: string) {
       const response = await axios.get('/api/chat/conversation', {
         params: { conversationKey },
       });
-      dispatch(slice.actions.getConversationSuccess(response.data.conversation));
+      dispatch(
+        slice.actions.getConversationSuccess(response.data.conversation),
+      );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
@@ -182,7 +194,9 @@ export function getParticipants(conversationKey: string) {
       const response = await axios.get('/api/chat/participants', {
         params: { conversationKey },
       });
-      dispatch(slice.actions.getParticipantsSuccess(response.data.participants));
+      dispatch(
+        slice.actions.getParticipantsSuccess(response.data.participants),
+      );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }

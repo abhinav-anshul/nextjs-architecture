@@ -1,11 +1,11 @@
 // types/global.d.ts
 
-export {}
+export {};
 
 declare global {
   interface IPost {
-    id: number
-    title: string
-    body: string
+    id: number;
+    title: string;
+    body: string;
   }
 }

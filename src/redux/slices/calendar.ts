@@ -98,7 +98,7 @@ export function updateEvent(
     allDay: boolean;
     start: Date | string | number | null;
     end: Date | string | number | null;
-  }>
+  }>,
 ) {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());

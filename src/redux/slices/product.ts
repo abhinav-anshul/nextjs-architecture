@@ -57,7 +57,9 @@ const slice = createSlice({
       const cart: ICheckoutCartItem[] = action.payload;
 
       const totalItems = sum(cart.map((product) => product.quantity));
-      const subtotal = sum(cart.map((product) => product.price * product.quantity));
+      const subtotal = sum(
+        cart.map((product) => product.price * product.quantity),
+      );
       state.checkout.cart = cart;
       state.checkout.discount = state.checkout.discount || 0;
       state.checkout.shipping = state.checkout.shipping || 0;
@@ -89,11 +91,15 @@ const slice = createSlice({
         });
       }
       state.checkout.cart = uniqBy([...state.checkout.cart, newProduct], 'id');
-      state.checkout.totalItems = sum(state.checkout.cart.map((product) => product.quantity));
+      state.checkout.totalItems = sum(
+        state.checkout.cart.map((product) => product.quantity),
+      );
     },
 
     deleteCart(state, action) {
-      const updateCart = state.checkout.cart.filter((product) => product.id !== action.payload);
+      const updateCart = state.checkout.cart.filter(
+        (product) => product.id !== action.payload,
+      );
 
       state.checkout.cart = updateCart;
     },
@@ -166,7 +172,8 @@ const slice = createSlice({
     applyShipping(state, action) {
       const shipping = action.payload;
       state.checkout.shipping = shipping;
-      state.checkout.total = state.checkout.subtotal - state.checkout.discount + shipping;
+      state.checkout.total =
+        state.checkout.subtotal - state.checkout.discount + shipping;
     },
   },
 });

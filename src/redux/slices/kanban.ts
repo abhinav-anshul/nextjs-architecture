@@ -78,9 +78,9 @@ const slice = createSlice({
     deleteTask(state, action) {
       const { cardId, columnId } = action.payload;
 
-      state.board.columns[columnId].cardIds = state.board.columns[columnId].cardIds.filter(
-        (id) => id !== cardId
-      );
+      state.board.columns[columnId].cardIds = state.board.columns[
+        columnId
+      ].cardIds.filter((id) => id !== cardId);
 
       state.board.cards = omit(state.board.cards, [cardId]);
     },
@@ -101,7 +101,9 @@ const slice = createSlice({
       state.isLoading = false;
       state.board.columns = omit(state.board.columns, [columnId]);
       state.board.cards = omit(state.board.cards, [...deletedColumn.cardIds]);
-      state.board.columnOrder = state.board.columnOrder.filter((c) => c !== columnId);
+      state.board.columnOrder = state.board.columnOrder.filter(
+        (c) => c !== columnId,
+      );
     },
   },
 });
@@ -188,7 +190,13 @@ export function persistCard(columns: Record<string, IKanbanColumn>) {
 
 // ----------------------------------------------------------------------
 
-export function addTask({ card, columnId }: { card: Partial<IKanbanCard>; columnId: string }) {
+export function addTask({
+  card,
+  columnId,
+}: {
+  card: Partial<IKanbanCard>;
+  columnId: string;
+}) {
   return (dispatch: Dispatch) => {
     dispatch(slice.actions.addTask({ card, columnId }));
   };
@@ -196,7 +204,13 @@ export function addTask({ card, columnId }: { card: Partial<IKanbanCard>; column
 
 // ----------------------------------------------------------------------
 
-export function deleteTask({ cardId, columnId }: { cardId: string; columnId: string }) {
+export function deleteTask({
+  cardId,
+  columnId,
+}: {
+  cardId: string;
+  columnId: string;
+}) {
   return (dispatch: Dispatch) => {
     dispatch(slice.actions.deleteTask({ cardId, columnId }));
   };

@@ -23,7 +23,9 @@ export const createNoopStorage = () => ({
 });
 
 export const storage =
-  typeof window !== 'undefined' ? createWebStorage('local') : createNoopStorage();
+  typeof window !== 'undefined'
+    ? createWebStorage('local')
+    : createNoopStorage();
 
 export const rootPersistConfig = {
   key: 'root',
@@ -40,9 +42,7 @@ export const productPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-
   //add your slices  here and blew you can see two example
-
   // mail: mailReducer,
   // chat: chatReducer,
   // calendar: calendarReducer,
