@@ -13,5 +13,6 @@ a very usefull library
 https://www.tremor.so/docs/getting-started/demo-dashboard
 
 
+
 usefull for set headers   Authorization: 'Bearer YOUR_TOKEN',
 https://github.com/selengr/nextjs-architecture/blob/main/src/lib/hooks/getHttpHeaders.ts
