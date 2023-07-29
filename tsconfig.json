@@ -13,13 +13,11 @@
     "module": "esnext",
     "incremental": true,
     "skipLibCheck": true,
-    
     "esModuleInterop": true,
     "isolatedModules": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "moduleResolution": "bundler",
-
     "forceConsistentCasingInFileNames": true,
     
     "exclude": ["node_modules"],
