@@ -6,3 +6,7 @@ https://github.com/vercel/app-playground/blob/main/app/context/context-click-cou
 
 good place for seo robot sitemape op:image and so on 
 https://github.com/vercel/commerce/blob/main/app/%5Bpage%5D/opengraph-image.tsx
+
+
+a very usefull library
+https://www.tremor.so/docs/getting-started/demo-dashboard
