@@ -16,3 +16,7 @@ https://www.tremor.so/docs/getting-started/demo-dashboard
 
 usefull for set headers   Authorization: 'Bearer YOUR_TOKEN',
 https://github.com/selengr/nextjs-architecture/blob/main/src/lib/hooks/getHttpHeaders.ts
+
+
+usefull architecture
+https://libraries.excalidraw.com/?target=_excalidraw&referrer=https%3A%2F%2Fexcalidraw.com%2F&useHash=true&token=LGGX9ScP2eYgvg1WARs6c&theme=light&version=2&sort=default
