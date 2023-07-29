@@ -2,7 +2,7 @@
 const nextConfig = {
     serverActions: true,
     images: { domains: [] },
-    reactStrictMode: false,
+    reactStrictMode: true,
 };
 
 module.exports = nextConfig;

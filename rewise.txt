@@ -1,1 +1,8 @@
 import { toast } from "sonner";
+
+a best playground for practice next js  both
+https://github.com/vercel/app-playground/blob/main/app/context/context-click-counter.tsx
+
+
+good place for seo robot sitemape op:image and so on 
+https://github.com/vercel/commerce/blob/main/app/%5Bpage%5D/opengraph-image.tsx
