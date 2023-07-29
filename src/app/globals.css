@@ -31,11 +31,11 @@ body {
   font-family: 'IRANSans';
   font-weight: 700;
   font-style: normal;
-  src: url('../../public/fonts/IRANSansWeb.ttf') format('opentype');
+  src: url('../../public/fonts/IRANSansWeb//IRANSansWeb.ttf') format('opentype');
 }
 @font-face {
   font-family: 'IRANSan';
   font-weight: 700;
   font-style: normal;
-  src: url('../../public/fonts/IRANSansWeb_Bold.woff') format('opentype');
+  src: url('../../public/fonts/IRANSansWeb/IRANSansWeb_Bold.woff') format('opentype');
 }
