@@ -16,11 +16,7 @@ type RoleBasedGuardProp = {
   children: React.ReactNode;
 };
 
-export default function RoleBasedGuard({
-  hasContent,
-  roles,
-  children,
-}: RoleBasedGuardProp) {
+export default function RoleBasedGuard({ hasContent, roles, children }: RoleBasedGuardProp) {
   // Logic here to get current user role
   const { user } = useAuthContext();
 

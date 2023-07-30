@@ -1,3 +1,4 @@
+import { SkeletonMap } from "@/components/common/skeleton";
 import axios from "@/services/axios";
 
 interface Post {
@@ -13,6 +14,7 @@ interface Post {
 
     return (
         <div>
+            <SkeletonMap />
            {data.map((element: Post) => (
                 <div key={element.id}>
                     <h1 className="bg-rose-400">{element.title}</h1>

@@ -16,8 +16,7 @@ function forceDownload(blobUrl: string, filename: string) {
     })
       .then((response) => response.blob())
       .then((blob) => {
-        let blobUrl = window.URL.createObjectURL(b
-            .lob);
+        let blobUrl = window.URL.createObjectURL(blob);
         forceDownload(blobUrl, filename);
       })
       .catch((e) => console.error(e));

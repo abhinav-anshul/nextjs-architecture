@@ -1,5 +1,29 @@
-// import { NextRequest, NextResponse } from "next/server";
-// import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+
+import { HOST_API_KEY } from "./config-global";
+import { AuthProvider } from "./auth/JwtContext";
+
+
+export default async function middleware(req : NextRequest) {
+    
+
+    // const token = await getToken({ req })
+    // if (!token) {
+    //     return NextResponse.redirect(new URL('/sign-in', req.nextUrl))
+    //   }
+
+    console.log('HOST_API_KEY :>> ', HOST_API_KEY);
+    // console.log('HOST_API_KEY ------------token 0000000:>> ', );
+    console.log('HOST_API_KEY ------------token req:>> ', {req});
+     
+    // return <AuthProvider>stes etsst</AuthProvider>
+
+   }
+
+   export const config = {
+    matcher: ["/"],
+  };
 
 // export const config = {
 //   matcher: [
@@ -57,7 +81,3 @@
 //   // rewrite everything else to `/[domain]/[path] dynamic route
 //   return NextResponse.rewrite(new URL(`/${hostname}${path}`, req.url));
 // }
-
-export default async function middleware() {
-
-}

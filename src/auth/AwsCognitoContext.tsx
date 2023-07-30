@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useEffect,
-  useReducer,
-  useCallback,
-  useMemo,
-} from 'react';
+import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
 import {
   CognitoUser,
   CognitoUserPool,
@@ -13,18 +7,13 @@ import {
   AuthenticationDetails,
 } from 'amazon-cognito-identity-js';
 // utils
-import axios from '../services/axios';
+import axios from '../utils/axios';
 // routes
 import { PATH_AUTH } from '../routes/paths';
 // config
 import { COGNITO_API } from '../config-global';
 //
-import {
-  ActionMapType,
-  AuthStateType,
-  AuthUserType,
-  AWSCognitoContextType,
-} from './types';
+import { ActionMapType, AuthStateType, AuthUserType, AWSCognitoContextType } from './types';
 
 // ----------------------------------------------------------------------
 
@@ -116,7 +105,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           }
         });
       }),
-    [],
+    []
   );
 
   const getSession = useCallback(
@@ -158,7 +147,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
                   },
                 },
               });
-            },
+            }
           );
         } else {
           dispatch({
@@ -170,7 +159,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           });
         }
       }),
-    [getUserAttributes],
+    [getUserAttributes]
   );
 
   const initialize = useCallback(async () => {
@@ -219,7 +208,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           },
         });
       }),
-    [getSession],
+    [getSession]
   );
 
   // REGISTER
@@ -248,7 +237,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           window.location.href = PATH_AUTH.login;
         });
       }),
-    [],
+    []
   );
 
   // LOGOUT
@@ -276,19 +265,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       register,
       logout,
     }),
-    [
-      state.isAuthenticated,
-      state.isInitialized,
-      state.user,
-      login,
-      register,
-      logout,
-    ],
+    [state.isAuthenticated, state.isInitialized, state.user, login, register, logout]
   );
 
-  return (
-    <AuthContext.Provider value={memoizedValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
 }

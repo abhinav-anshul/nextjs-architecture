@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useEffect,
-  useReducer,
-  useCallback,
-  useMemo,
-} from 'react';
+import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -17,22 +11,11 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import {
-  getFirestore,
-  collection,
-  doc,
-  getDoc,
-  setDoc,
-} from 'firebase/firestore';
+import { getFirestore, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 // config
 import { FIREBASE_API } from '../config-global';
 //
-import {
-  ActionMapType,
-  AuthStateType,
-  AuthUserType,
-  FirebaseContextType,
-} from './types';
+import { ActionMapType, AuthStateType, AuthUserType, FirebaseContextType } from './types';
 
 // ----------------------------------------------------------------------
 
@@ -158,25 +141,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   // REGISTER
   const register = useCallback(
-    async (
-      email: string,
-      password: string,
-      firstName: string,
-      lastName: string,
-    ) => {
-      await createUserWithEmailAndPassword(AUTH, email, password).then(
-        async (res) => {
-          const userRef = doc(collection(DB, 'users'), res.user?.uid);
+    async (email: string, password: string, firstName: string, lastName: string) => {
+      await createUserWithEmailAndPassword(AUTH, email, password).then(async (res) => {
+        const userRef = doc(collection(DB, 'users'), res.user?.uid);
 
-          await setDoc(userRef, {
-            uid: res.user?.uid,
-            email,
-            displayName: `${firstName} ${lastName}`,
-          });
-        },
-      );
+        await setDoc(userRef, {
+          uid: res.user?.uid,
+          email,
+          displayName: `${firstName} ${lastName}`,
+        });
+      });
     },
-    [],
+    []
   );
 
   // LOGOUT
@@ -207,12 +183,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       loginWithTwitter,
       register,
       logout,
-    ],
+    ]
   );
 
-  return (
-    <AuthContext.Provider value={memoizedValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
 }

@@ -20,3 +20,7 @@ https://github.com/selengr/nextjs-architecture/blob/main/src/lib/hooks/getHttpHe
 
 usefull architecture
 https://libraries.excalidraw.com/?target=_excalidraw&referrer=https%3A%2F%2Fexcalidraw.com%2F&useHash=true&token=LGGX9ScP2eYgvg1WARs6c&theme=light&version=2&sort=default
+
+
+redux
+https://github.com/joschan21/bmicalc-react/blob/main/src/redux/store.js
