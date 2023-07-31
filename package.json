@@ -1,11 +1,10 @@
 {
-  "name": "nextjs-architecture",
+  "name": "new-bp",
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=14.0.0",
-    "yarn": ">=1.22.0",
-    "npm": "please-use-yarn"
+    "node": ">=18.0.0",
+    "npm": "please-use-npm"
   },
   "scripts": {
     "dev": "next dev",
@@ -13,35 +12,43 @@
     "start": "next start",
     "lint": "next lint",
     "prettier": "prettier --write .",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.31",
-    "@types/react-dom": "18.0.11",
-    "eslint": "8.37.0",
-    "eslint-config-next": "13.2.4",
-    "next": "13.2.4",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.1",
+    "@types/node": "20.4.4",
+    "@types/react": "18.2.15",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
+    "eslint": "8.45.0",
+    "eslint-config-next": "13.4.12",
+    "next": "13.4.12",
+    "next-auth": "^4.22.3",
+    "postcss": "8.4.27",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-kyu": "^0.0.3",
-    "typescript": "5.0.3"
+    "react-query": "^3.39.3",
+    "swr": "^2.2.0",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
-    "@storybook/addon-actions": "^6.5.16",
-    "@storybook/addon-essentials": "^6.5.16",
-    "@storybook/addon-interactions": "^6.5.16",
-    "@storybook/addon-links": "^6.5.16",
-    "@storybook/builder-webpack5": "^6.5.16",
-    "@storybook/manager-webpack5": "^6.5.16",
-    "@storybook/react": "^6.5.16",
-    "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^8.3.0",
-    "eslint-plugin-storybook": "^0.6.11"
+    "@storybook/addon-essentials": "^7.1.0",
+    "@storybook/addon-interactions": "^7.1.0",
+    "@storybook/addon-links": "^7.1.0",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.1.0",
+    "@storybook/nextjs": "^7.1.0",
+    "@storybook/react": "^7.1.0",
+    "@storybook/testing-library": "^0.2.0",
+    "eslint-plugin-storybook": "^0.6.13",
+    "prettier": "^3.0.0",
+    "storybook": "^7.1.0"
   },
-  
   "resolutions": {
     "@storybook/react-docgen-typescript-plugin": "1.0.6--canary.9.cd77847.0"
   }

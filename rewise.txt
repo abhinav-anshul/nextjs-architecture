@@ -1,0 +1,26 @@
+import { toast } from "sonner";
+
+a best playground for practice next js  both
+https://github.com/vercel/app-playground/blob/main/app/context/context-click-counter.tsx
+
+
+good place for seo robot sitemape op:image and so on 
+https://github.com/vercel/commerce/blob/main/app/%5Bpage%5D/opengraph-image.tsx
+
+
+
+a very usefull library
+https://www.tremor.so/docs/getting-started/demo-dashboard
+
+
+
+usefull for set headers   Authorization: 'Bearer YOUR_TOKEN',
+https://github.com/selengr/nextjs-architecture/blob/main/src/lib/hooks/getHttpHeaders.ts
+
+
+usefull architecture
+https://libraries.excalidraw.com/?target=_excalidraw&referrer=https%3A%2F%2Fexcalidraw.com%2F&useHash=true&token=LGGX9ScP2eYgvg1WARs6c&theme=light&version=2&sort=default
+
+
+redux
+https://github.com/joschan21/bmicalc-react/blob/main/src/redux/store.js

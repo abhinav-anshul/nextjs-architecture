@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## npm run dev
 
-## Getting Started
+in order to use 👆
 
-First, run the development server:
+## Linking and Navigating <em>-suggestion-</em>;
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<h4>Recommendation: Use the <Link> component for navigation unless you have a specific requirement for using useRouter.</h4>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔭 use link in this way
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- <Link href="/">x</Link> or  -href={`/blog/${post.slug}`} or replace or prefetch
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Migrating from the pages directory:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- The new useRouter hook should be imported from next/navigation and not next/router
+- The pathname string has been removed and is replaced by usePathname()
+- The query object has been removed and is replaced by useSearchParams()
 
-## Learn More
+## 💼 Technical Skills
 
-To learn more about Next.js, take a look at the following resources:
+<!-- ///////////////////////// -->
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Routing Fundamentals
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- <strong>layout</strong> Shared UI for a segment and its children
+- <strong>page</strong> Unique UI of a route and make routes publicly accessible
+- <strong>loading</strong> Loading UI for a segment and its children
+- <strong>not found</strong> Not found UI for a segment and its children
+- <strong>error</strong> Error UI for a segment and its children
+- <strong>global-error</strong> Global Error UI
+- <strong>route</strong> Server-side API endpoint (specifcally for backend which we do not need that at all)
+- <strong>tstrongplate</strong> Specialized re-rendered Layout UI
+- <strong>default</strong> Fallback UI for Parallel Routes
