@@ -9,17 +9,13 @@ interface Post {
   }
 
   export default async function Page(){
-    const response = await axios.get("/posts");
-    const data = response.data;
+
+        await new Promise((resolve) => setTimeout(resolve,10000))
+
 
     return (
         <div>
             <SkeletonMap />
-           {data.map((element: Post) => (
-                <div key={element.id}>
-                    <h1 className="bg-rose-400">{element.title}</h1>
-                </div>
-))}
         </div>
     );
 }
