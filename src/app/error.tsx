@@ -28,9 +28,7 @@ There was a problem </p>
 <Link href='/' 
 // className={buttonVariants({ variant: 'outline' })}
 >
-
 Go back home
-
 </Link> 
 </div>
 </div>
