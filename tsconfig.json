@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "esnext",
-      "dom.iterable"
-    ],
+    "lib": ["dom", "esnext", "dom.iterable"],
     "strict": true,
     "noEmit": true,
     "allowJs": true,
@@ -25,9 +21,7 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
@@ -37,7 +31,5 @@
     ".next/types/**/*.ts",
     "build/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

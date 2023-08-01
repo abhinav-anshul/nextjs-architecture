@@ -1,10 +1,16 @@
-import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
+import {
+  createContext,
+  useEffect,
+  useReducer,
+  useCallback,
+  useMemo
+} from 'react';
 import {
   CognitoUser,
   CognitoUserPool,
   CognitoUserSession,
   CognitoUserAttribute,
-  AuthenticationDetails,
+  AuthenticationDetails
 } from 'amazon-cognito-identity-js';
 // utils
 import axios from '../utils/axios';
@@ -13,7 +19,12 @@ import { PATH_AUTH } from '../routes/paths';
 // config
 import { COGNITO_API } from '../config-global';
 //
-import { ActionMapType, AuthStateType, AuthUserType, AWSCognitoContextType } from './types';
+import {
+  ActionMapType,
+  AuthStateType,
+  AuthUserType,
+  AWSCognitoContextType
+} from './types';
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +37,7 @@ import { ActionMapType, AuthStateType, AuthUserType, AWSCognitoContextType } fro
 enum Types {
   AUTH = 'AUTH',
   REGISTER = 'REGISTER',
-  LOGOUT = 'LOGOUT',
+  LOGOUT = 'LOGOUT'
 }
 
 type Payload = {
@@ -44,7 +55,7 @@ type ActionsType = ActionMapType<Payload>[keyof ActionMapType<Payload>];
 const initialState: AuthStateType = {
   isAuthenticated: false,
   isInitialized: false,
-  user: null,
+  user: null
 };
 
 interface UserAttributeType {
@@ -56,14 +67,14 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
     return {
       isInitialized: true,
       isAuthenticated: action.payload.isAuthenticated,
-      user: action.payload.user,
+      user: action.payload.user
     };
   }
   if (action.type === Types.LOGOUT) {
     return {
       ...state,
       isAuthenticated: false,
-      user: null,
+      user: null
     };
   }
   return state;
@@ -77,7 +88,7 @@ export const AuthContext = createContext<AWSCognitoContextType | null>(null);
 
 const userPool = new CognitoUserPool({
   UserPoolId: COGNITO_API.userPoolId || '',
-  ClientId: COGNITO_API.clientId || '',
+  ClientId: COGNITO_API.clientId || ''
 });
 
 type AuthProviderProps = {
@@ -131,8 +142,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 cognitoUser,
                 session,
                 headers: {
-                  Authorization: token,
-                },
+                  Authorization: token
+                }
               });
 
               dispatch({
@@ -143,9 +154,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     ...cognitoUser,
                     ...attributes,
                     displayName: attributes.name,
-                    role: 'admin',
-                  },
-                },
+                    role: 'admin'
+                  }
+                }
               });
             }
           );
@@ -154,8 +165,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
             type: Types.AUTH,
             payload: {
               isAuthenticated: false,
-              user: null,
-            },
+              user: null
+            }
           });
         }
       }),
@@ -170,8 +181,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         type: Types.AUTH,
         payload: {
           isAuthenticated: false,
-          user: null,
-        },
+          user: null
+        }
       });
     }
   }, [getSession]);
@@ -190,12 +201,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
       new Promise((resolve, reject) => {
         const userData = new CognitoUser({
           Username: email,
-          Pool: userPool,
+          Pool: userPool
         });
 
         const authDetails = new AuthenticationDetails({
           Username: email,
-          Password: password,
+          Password: password
         });
 
         userData.authenticateUser(authDetails, {
@@ -205,7 +216,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           },
           onFailure: (error) => {
             reject(error);
-          },
+          }
         });
       }),
     [getSession]
@@ -218,12 +229,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
         const newAttributes = [
           new CognitoUserAttribute({
             Name: 'email',
-            Value: email,
+            Value: email
           }),
           new CognitoUserAttribute({
             Name: 'name',
-            Value: `${firstName} ${lastName}`,
-          }),
+            Value: `${firstName} ${lastName}`
+          })
         ];
 
         userPool.signUp(email, password, newAttributes, [], async (error) => {
@@ -247,7 +258,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (cognitoUser) {
       cognitoUser.signOut();
       dispatch({
-        type: Types.LOGOUT,
+        type: Types.LOGOUT
       });
     }
   }, []);
@@ -263,10 +274,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
       loginWithGithub: () => {},
       loginWithTwitter: () => {},
       register,
-      logout,
+      logout
     }),
-    [state.isAuthenticated, state.isInitialized, state.user, login, register, logout]
+    [
+      state.isAuthenticated,
+      state.isInitialized,
+      state.user,
+      login,
+      register,
+      logout
+    ]
   );
 
-  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

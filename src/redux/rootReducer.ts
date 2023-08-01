@@ -19,7 +19,7 @@ export const createNoopStorage = () => ({
   },
   removeItem(_key: string) {
     return Promise.resolve();
-  },
+  }
 });
 
 export const storage =
@@ -31,14 +31,14 @@ export const rootPersistConfig = {
   key: 'root',
   storage,
   keyPrefix: 'redux-',
-  whitelist: [],
+  whitelist: []
 };
 
 export const productPersistConfig = {
   key: 'product',
   storage,
   keyPrefix: 'redux-',
-  whitelist: ['sortBy', 'checkout'],
+  whitelist: ['sortBy', 'checkout']
 };
 
 const rootReducer = combineReducers({

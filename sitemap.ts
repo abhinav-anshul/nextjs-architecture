@@ -1,5 +1,5 @@
 // import { MetadataRoute } from 'next'
- 
+
 // type Sitemap = Array<{
 //     url: string
 //     lastModified?: string | Date
@@ -21,10 +21,6 @@
 //     },
 //   ]
 // }
-
-
-
-
 
 // import { getCollections, getPages, getProducts } from 'lib/shopify';
 // import { MetadataRoute } from 'next';

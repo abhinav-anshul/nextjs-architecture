@@ -37,5 +37,6 @@ body {
   font-family: 'IRANSan';
   font-weight: 700;
   font-style: normal;
-  src: url('../../public/fonts/IRANSansWeb/IRANSansWeb_Bold.woff') format('opentype');
+  src: url('../../public/fonts/IRANSansWeb/IRANSansWeb_Bold.woff')
+    format('opentype');
 }

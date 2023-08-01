@@ -21,8 +21,8 @@ const initialState: IProductState = {
     discount: 0,
     shipping: 0,
     billing: null,
-    totalItems: 0,
-  },
+    totalItems: 0
+  }
 };
 
 const slice = createSlice({
@@ -58,7 +58,7 @@ const slice = createSlice({
 
       const totalItems = sum(cart.map((product) => product.quantity));
       const subtotal = sum(
-        cart.map((product) => product.price * product.quantity),
+        cart.map((product) => product.price * product.quantity)
       );
       state.checkout.cart = cart;
       state.checkout.discount = state.checkout.discount || 0;
@@ -83,7 +83,7 @@ const slice = createSlice({
             return {
               ...product,
               colors: uniq([...product.colors, ...newProduct.colors]),
-              quantity: product.quantity + 1,
+              quantity: product.quantity + 1
             };
           }
 
@@ -92,13 +92,13 @@ const slice = createSlice({
       }
       state.checkout.cart = uniqBy([...state.checkout.cart, newProduct], 'id');
       state.checkout.totalItems = sum(
-        state.checkout.cart.map((product) => product.quantity),
+        state.checkout.cart.map((product) => product.quantity)
       );
     },
 
     deleteCart(state, action) {
       const updateCart = state.checkout.cart.filter(
-        (product) => product.id !== action.payload,
+        (product) => product.id !== action.payload
       );
 
       state.checkout.cart = updateCart;
@@ -135,7 +135,7 @@ const slice = createSlice({
         if (product.id === productId) {
           return {
             ...product,
-            quantity: product.quantity + 1,
+            quantity: product.quantity + 1
           };
         }
         return product;
@@ -150,7 +150,7 @@ const slice = createSlice({
         if (product.id === productId) {
           return {
             ...product,
-            quantity: product.quantity - 1,
+            quantity: product.quantity - 1
           };
         }
         return product;
@@ -174,8 +174,8 @@ const slice = createSlice({
       state.checkout.shipping = shipping;
       state.checkout.total =
         state.checkout.subtotal - state.checkout.discount + shipping;
-    },
-  },
+    }
+  }
 });
 
 // Reducer
@@ -194,7 +194,7 @@ export const {
   applyShipping,
   applyDiscount,
   increaseQuantity,
-  decreaseQuantity,
+  decreaseQuantity
 } = slice.actions;
 
 // ----------------------------------------------------------------------
@@ -218,7 +218,7 @@ export function getProduct(name: string) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/products/product', {
-        params: { name },
+        params: { name }
       });
       dispatch(slice.actions.getProductSuccess(response.data.product));
     } catch (error) {

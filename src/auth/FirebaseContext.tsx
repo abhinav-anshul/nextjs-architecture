@@ -1,4 +1,10 @@
-import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
+import {
+  createContext,
+  useEffect,
+  useReducer,
+  useCallback,
+  useMemo
+} from 'react';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -9,13 +15,24 @@ import {
   GithubAuthProvider,
   TwitterAuthProvider,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
+  createUserWithEmailAndPassword
 } from 'firebase/auth';
-import { getFirestore, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc
+} from 'firebase/firestore';
 // config
 import { FIREBASE_API } from '../config-global';
 //
-import { ActionMapType, AuthStateType, AuthUserType, FirebaseContextType } from './types';
+import {
+  ActionMapType,
+  AuthStateType,
+  AuthUserType,
+  FirebaseContextType
+} from './types';
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +43,7 @@ import { ActionMapType, AuthStateType, AuthUserType, FirebaseContextType } from 
 // ----------------------------------------------------------------------
 
 enum Types {
-  INITIAL = 'INITIAL',
+  INITIAL = 'INITIAL'
 }
 
 type Payload = {
@@ -43,7 +60,7 @@ type ActionsType = ActionMapType<Payload>[keyof ActionMapType<Payload>];
 const initialState: AuthStateType = {
   isInitialized: false,
   isAuthenticated: false,
-  user: null,
+  user: null
 };
 
 const reducer = (state: AuthStateType, action: ActionsType) => {
@@ -51,7 +68,7 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
     return {
       isInitialized: true,
       isAuthenticated: action.payload.isAuthenticated,
-      user: action.payload.user,
+      user: action.payload.user
     };
   }
   return state;
@@ -99,17 +116,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
               user: {
                 ...user,
                 ...profile,
-                role: 'admin',
-              },
-            },
+                role: 'admin'
+              }
+            }
           });
         } else {
           dispatch({
             type: Types.INITIAL,
             payload: {
               isAuthenticated: false,
-              user: null,
-            },
+              user: null
+            }
           });
         }
       });
@@ -141,16 +158,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   // REGISTER
   const register = useCallback(
-    async (email: string, password: string, firstName: string, lastName: string) => {
-      await createUserWithEmailAndPassword(AUTH, email, password).then(async (res) => {
-        const userRef = doc(collection(DB, 'users'), res.user?.uid);
+    async (
+      email: string,
+      password: string,
+      firstName: string,
+      lastName: string
+    ) => {
+      await createUserWithEmailAndPassword(AUTH, email, password).then(
+        async (res) => {
+          const userRef = doc(collection(DB, 'users'), res.user?.uid);
 
-        await setDoc(userRef, {
-          uid: res.user?.uid,
-          email,
-          displayName: `${firstName} ${lastName}`,
-        });
-      });
+          await setDoc(userRef, {
+            uid: res.user?.uid,
+            email,
+            displayName: `${firstName} ${lastName}`
+          });
+        }
+      );
     },
     []
   );
@@ -171,7 +195,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       loginWithGithub,
       loginWithTwitter,
       register,
-      logout,
+      logout
     }),
     [
       state.isAuthenticated,
@@ -182,9 +206,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
       loginWithGoogle,
       loginWithTwitter,
       register,
-      logout,
+      logout
     ]
   );
 
-  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

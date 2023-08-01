@@ -12,7 +12,7 @@ const ROOTS_DASHBOARD = '/dashboard';
 export const PATH_AUTH = {
   root: ROOTS_AUTH,
   login: path(ROOTS_AUTH, '/login'),
-  register: path(ROOTS_AUTH, '/register'),
+  register: path(ROOTS_AUTH, '/register')
 };
 
 export const PATH_PAGE = {
@@ -21,23 +21,23 @@ export const PATH_PAGE = {
   page403: '/403',
   page404: '/404',
   page500: '/500',
-  components: '/components',
+  components: '/components'
 };
 
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
 
   general: {
-    app: path(ROOTS_DASHBOARD, '/app'),
+    app: path(ROOTS_DASHBOARD, '/app')
   },
   mail: {
-    root: path(ROOTS_DASHBOARD, '/mail'),
+    root: path(ROOTS_DASHBOARD, '/mail')
   },
 
   invoice: {
-    root: path(ROOTS_DASHBOARD, '/invoice'),
+    root: path(ROOTS_DASHBOARD, '/invoice')
   },
   blog: {
-    root: path(ROOTS_DASHBOARD, '/blog'),
-  },
+    root: path(ROOTS_DASHBOARD, '/blog')
+  }
 };

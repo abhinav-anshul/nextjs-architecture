@@ -7,7 +7,7 @@ import { IButtonProps } from './types';
 
 const meta: Meta<typeof UiButton> = {
   title: 'Components/Buttons',
-  component: UiButton,
+  component: UiButton
 };
 
 export default meta;
@@ -75,5 +75,5 @@ export const Button: Story = {
         </div>
       </div>
     </div>
-  ),
+  )
 };

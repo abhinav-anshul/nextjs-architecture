@@ -1,29 +1,25 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from 'next/server';
+import { getToken } from 'next-auth/jwt';
 
-import { HOST_API_KEY } from "./config-global";
-import { AuthProvider } from "./auth/JwtContext";
+import { HOST_API_KEY } from './config-global';
+import { AuthProvider } from './auth/JwtContext';
 
+export default async function middleware(req: NextRequest) {
+  // const token = await getToken({ req })
+  // if (!token) {
+  //     return NextResponse.redirect(new URL('/sign-in', req.nextUrl))
+  //   }
 
-export default async function middleware(req : NextRequest) {
-    
+  console.log('HOST_API_KEY :>> ', HOST_API_KEY);
+  // console.log('HOST_API_KEY ------------token 0000000:>> ', );
+  console.log('HOST_API_KEY ------------token req:>> ', { req });
 
-    // const token = await getToken({ req })
-    // if (!token) {
-    //     return NextResponse.redirect(new URL('/sign-in', req.nextUrl))
-    //   }
+  // return <AuthProvider>stes etsst</AuthProvider>
+}
 
-    console.log('HOST_API_KEY :>> ', HOST_API_KEY);
-    // console.log('HOST_API_KEY ------------token 0000000:>> ', );
-    console.log('HOST_API_KEY ------------token req:>> ', {req});
-     
-    // return <AuthProvider>stes etsst</AuthProvider>
-
-   }
-
-   export const config = {
-    matcher: ["/"],
-  };
+export const config = {
+  matcher: ['/']
+};
 
 // export const config = {
 //   matcher: [
@@ -62,14 +58,13 @@ export default async function middleware(req : NextRequest) {
 //     );
 //   }
 
-
 //   // special case for `vercel.pub` domain
 //   if (hostname === "vercel.pub") {
 //     return NextResponse.redirect(
 //       "https://vercel.com/blog/platforms-starter-kit",
 //     );
 //   }
-  
+
 //   // rewrite root application to `/home` folder
 //   if (
 //     hostname === "localhost:3000" ||

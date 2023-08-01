@@ -7,7 +7,11 @@ export default function SkeletonProductDetails({ ...other }: GridProps) {
   return (
     <Grid container spacing={3} {...other}>
       <Grid item xs={12} md={6} lg={7}>
-        <Skeleton variant="rectangular" width="100%" sx={{ paddingTop: '100%', borderRadius: 2 }} />
+        <Skeleton
+          variant="rectangular"
+          width="100%"
+          sx={{ paddingTop: '100%', borderRadius: 2 }}
+        />
       </Grid>
 
       <Grid item xs={12} md={6} lg={5}>

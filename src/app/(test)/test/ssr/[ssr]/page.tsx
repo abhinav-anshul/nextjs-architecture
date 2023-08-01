@@ -19,7 +19,7 @@ import { FC } from 'react';
 export default async function Page({ params }: { params: { id: string } }) {
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${params.id}`,
-    { cache: 'no-store' },
+    { cache: 'no-store' }
   );
   const data = (await res.json()) as { title: string; body: string };
 

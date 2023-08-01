@@ -14,7 +14,7 @@ const initialState: IChatState = {
   conversations: { byId: {}, allIds: [] },
   activeConversationId: null,
   participants: [],
-  recipients: [],
+  recipients: []
 };
 
 const slice = createSlice({
@@ -73,7 +73,7 @@ const slice = createSlice({
         contentType,
         attachments,
         createdAt,
-        senderId,
+        senderId
       } = conversation;
 
       const newMessage = {
@@ -82,7 +82,7 @@ const slice = createSlice({
         contentType,
         attachments,
         createdAt,
-        senderId,
+        senderId
       };
 
       state.conversations.byId[conversationId].messages.push(newMessage);
@@ -110,8 +110,8 @@ const slice = createSlice({
     addRecipients(state, action) {
       const recipients = action.payload;
       state.recipients = recipients;
-    },
-  },
+    }
+  }
 });
 
 // Reducer
@@ -143,7 +143,7 @@ export function getConversations() {
     try {
       const response = await axios.get('/api/chat/conversations');
       dispatch(
-        slice.actions.getConversationsSuccess(response.data.conversations),
+        slice.actions.getConversationsSuccess(response.data.conversations)
       );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -158,10 +158,10 @@ export function getConversation(conversationKey: string) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/chat/conversation', {
-        params: { conversationKey },
+        params: { conversationKey }
       });
       dispatch(
-        slice.actions.getConversationSuccess(response.data.conversation),
+        slice.actions.getConversationSuccess(response.data.conversation)
       );
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -176,7 +176,7 @@ export function markConversationAsRead(conversationId: string) {
     dispatch(slice.actions.startLoading());
     try {
       await axios.get('/api/chat/conversation/mark-as-seen', {
-        params: { conversationId },
+        params: { conversationId }
       });
       dispatch(slice.actions.markConversationAsReadSuccess({ conversationId }));
     } catch (error) {
@@ -192,10 +192,10 @@ export function getParticipants(conversationKey: string) {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/chat/participants', {
-        params: { conversationKey },
+        params: { conversationKey }
       });
       dispatch(
-        slice.actions.getParticipantsSuccess(response.data.participants),
+        slice.actions.getParticipantsSuccess(response.data.participants)
       );
     } catch (error) {
       dispatch(slice.actions.hasError(error));

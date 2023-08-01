@@ -1,9 +1,20 @@
-import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
+import {
+  createContext,
+  useEffect,
+  useReducer,
+  useCallback,
+  useMemo
+} from 'react';
 import { Auth0Client } from '@auth0/auth0-spa-js';
 // config
 import { AUTH0_API } from '../config-global';
 //
-import { ActionMapType, AuthStateType, AuthUserType, Auth0ContextType } from './types';
+import {
+  ActionMapType,
+  AuthStateType,
+  AuthUserType,
+  Auth0ContextType
+} from './types';
 
 // ----------------------------------------------------------------------
 
@@ -16,7 +27,7 @@ import { ActionMapType, AuthStateType, AuthUserType, Auth0ContextType } from './
 enum Types {
   INITIAL = 'INITIAL',
   LOGIN = 'LOGIN',
-  LOGOUT = 'LOGOUT',
+  LOGOUT = 'LOGOUT'
 }
 
 type Payload = {
@@ -37,7 +48,7 @@ type ActionsType = ActionMapType<Payload>[keyof ActionMapType<Payload>];
 const initialState: AuthStateType = {
   isInitialized: false,
   isAuthenticated: false,
-  user: null,
+  user: null
 };
 
 const reducer = (state: AuthStateType, action: ActionsType) => {
@@ -45,21 +56,21 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
     return {
       isInitialized: true,
       isAuthenticated: action.payload.isAuthenticated,
-      user: action.payload.user,
+      user: action.payload.user
     };
   }
   if (action.type === Types.LOGIN) {
     return {
       ...state,
       isAuthenticated: true,
-      user: action.payload.user,
+      user: action.payload.user
     };
   }
   if (action.type === Types.LOGOUT) {
     return {
       ...state,
       isAuthenticated: false,
-      user: null,
+      user: null
     };
   }
   return state;
@@ -86,8 +97,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         clientId: AUTH0_API.clientId || '',
         domain: AUTH0_API.domain || '',
         authorizationParams: {
-          redirect_uri: window.location.origin,
-        },
+          redirect_uri: window.location.origin
+        }
       });
 
       await auth0Client.checkSession();
@@ -105,17 +116,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
               ...user,
               displayName: user?.name,
               photoURL: user?.picture,
-              role: 'admin',
-            },
-          },
+              role: 'admin'
+            }
+          }
         });
       } else {
         dispatch({
           type: Types.INITIAL,
           payload: {
             isAuthenticated,
-            user: null,
-          },
+            user: null
+          }
         });
       }
     } catch (error) {
@@ -124,8 +135,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         type: Types.INITIAL,
         payload: {
           isAuthenticated: false,
-          user: null,
-        },
+          user: null
+        }
       });
     }
   }, []);
@@ -150,9 +161,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
             ...user,
             displayName: user?.name,
             photoURL: user?.picture,
-            role: 'admin',
-          },
-        },
+            role: 'admin'
+          }
+        }
       });
     }
   }, []);
@@ -161,7 +172,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const logout = useCallback(() => {
     auth0Client?.logout();
     dispatch({
-      type: Types.LOGOUT,
+      type: Types.LOGOUT
     });
   }, []);
 
@@ -172,10 +183,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
       user: state.user,
       method: 'auth0',
       login,
-      logout,
+      logout
     }),
     [state.isAuthenticated, state.isInitialized, state.user, login, logout]
   );
 
-  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

@@ -13,7 +13,7 @@ const useCustomSWR = (api: ISwrApi, config?: ICustomSWRConfig) => {
       const response = await axios({
         method: api.method,
         url: api.url,
-        data: api.body,
+        data: api.body
       });
 
       return response.data;
@@ -25,12 +25,11 @@ const useCustomSWR = (api: ISwrApi, config?: ICustomSWRConfig) => {
   return {
     data,
     isLoading: !error && !data,
-    isError: error,
+    isError: error
   };
 };
 
 export default useCustomSWR;
-
 
 // usage
 

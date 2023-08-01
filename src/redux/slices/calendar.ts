@@ -9,7 +9,7 @@ import { ICalendarState, ICalendarEvent } from '../../@types/calendar';
 const initialState: ICalendarState = {
   isLoading: false,
   error: null,
-  events: [],
+  events: []
 };
 
 const slice = createSlice({
@@ -55,8 +55,8 @@ const slice = createSlice({
     deleteEventSuccess(state, action) {
       const eventId = action.payload;
       state.events = state.events.filter((event) => event.id !== eventId);
-    },
-  },
+    }
+  }
 });
 
 // Reducer
@@ -98,14 +98,14 @@ export function updateEvent(
     allDay: boolean;
     start: Date | string | number | null;
     end: Date | string | number | null;
-  }>,
+  }>
 ) {
   return async (dispatch: Dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.post('/api/calendar/events/update', {
         eventId,
-        event,
+        event
       });
       dispatch(slice.actions.updateEventSuccess(response.data.event));
     } catch (error) {

@@ -14,8 +14,8 @@ const initialState: IKanbanState = {
   board: {
     cards: {},
     columns: {},
-    columnOrder: [],
-  },
+    columnOrder: []
+  }
 };
 
 const slice = createSlice({
@@ -44,7 +44,7 @@ const slice = createSlice({
       state.board = {
         cards,
         columns,
-        columnOrder,
+        columnOrder
       };
     },
 
@@ -54,7 +54,7 @@ const slice = createSlice({
       state.isLoading = false;
       state.board.columns = {
         ...state.board.columns,
-        [newColumn.id]: newColumn,
+        [newColumn.id]: newColumn
       };
       state.board.columnOrder.push(newColumn.id);
     },
@@ -102,10 +102,10 @@ const slice = createSlice({
       state.board.columns = omit(state.board.columns, [columnId]);
       state.board.cards = omit(state.board.cards, [...deletedColumn.cardIds]);
       state.board.columnOrder = state.board.columnOrder.filter(
-        (c) => c !== columnId,
+        (c) => c !== columnId
       );
-    },
-  },
+    }
+  }
 });
 
 // Reducer
@@ -149,7 +149,7 @@ export function updateColumn(columnId: string, column: IKanbanColumn) {
     try {
       const response = await axios.post('/api/kanban/columns/update', {
         columnId,
-        column,
+        column
       });
       dispatch(slice.actions.updateColumnSuccess(response.data.column));
     } catch (error) {
@@ -192,7 +192,7 @@ export function persistCard(columns: Record<string, IKanbanColumn>) {
 
 export function addTask({
   card,
-  columnId,
+  columnId
 }: {
   card: Partial<IKanbanCard>;
   columnId: string;
@@ -206,7 +206,7 @@ export function addTask({
 
 export function deleteTask({
   cardId,
-  columnId,
+  columnId
 }: {
   cardId: string;
   columnId: string;

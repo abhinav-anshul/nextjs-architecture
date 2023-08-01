@@ -11,7 +11,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
 
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${params.id}`,
+    `https://jsonplaceholder.typicode.com/posts/${params.id}`
   );
   const data = (await res.json()) as { title: string; body: string };
 

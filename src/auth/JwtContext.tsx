@@ -1,11 +1,22 @@
-'use client'
-import { createContext, useEffect, useReducer, useCallback, useMemo } from 'react';
+'use client';
+import {
+  createContext,
+  useEffect,
+  useReducer,
+  useCallback,
+  useMemo
+} from 'react';
 // utils
 import axios from '../utils/axios';
 import localStorageAvailable from '../utils/localStorageAvailable';
 //
 import { isValidToken, setSession } from './utils';
-import { ActionMapType, AuthStateType, AuthUserType, JWTContextType } from './types';
+import {
+  ActionMapType,
+  AuthStateType,
+  AuthUserType,
+  JWTContextType
+} from './types';
 
 // ----------------------------------------------------------------------
 
@@ -19,7 +30,7 @@ enum Types {
   INITIAL = 'INITIAL',
   LOGIN = 'LOGIN',
   REGISTER = 'REGISTER',
-  LOGOUT = 'LOGOUT',
+  LOGOUT = 'LOGOUT'
 }
 
 type Payload = {
@@ -43,7 +54,7 @@ type ActionsType = ActionMapType<Payload>[keyof ActionMapType<Payload>];
 const initialState: AuthStateType = {
   isInitialized: false,
   isAuthenticated: false,
-  user: null,
+  user: null
 };
 
 const reducer = (state: AuthStateType, action: ActionsType) => {
@@ -51,28 +62,28 @@ const reducer = (state: AuthStateType, action: ActionsType) => {
     return {
       isInitialized: true,
       isAuthenticated: action.payload.isAuthenticated,
-      user: action.payload.user,
+      user: action.payload.user
     };
   }
   if (action.type === Types.LOGIN) {
     return {
       ...state,
       isAuthenticated: true,
-      user: action.payload.user,
+      user: action.payload.user
     };
   }
   if (action.type === Types.REGISTER) {
     return {
       ...state,
       isAuthenticated: true,
-      user: action.payload.user,
+      user: action.payload.user
     };
   }
   if (action.type === Types.LOGOUT) {
     return {
       ...state,
       isAuthenticated: false,
-      user: null,
+      user: null
     };
   }
   return state;
@@ -95,7 +106,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const initialize = useCallback(async () => {
     try {
-      const accessToken = storageAvailable ? localStorage.getItem('accessToken') : '';
+      const accessToken = storageAvailable
+        ? localStorage.getItem('accessToken')
+        : '';
 
       if (accessToken && isValidToken(accessToken)) {
         setSession(accessToken);
@@ -108,16 +121,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
           type: Types.INITIAL,
           payload: {
             isAuthenticated: true,
-            user,
-          },
+            user
+          }
         });
       } else {
         dispatch({
           type: Types.INITIAL,
           payload: {
             isAuthenticated: false,
-            user: null,
-          },
+            user: null
+          }
         });
       }
     } catch (error) {
@@ -126,8 +139,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         type: Types.INITIAL,
         payload: {
           isAuthenticated: false,
-          user: null,
-        },
+          user: null
+        }
       });
     }
   }, [storageAvailable]);
@@ -136,32 +149,37 @@ export function AuthProvider({ children }: AuthProviderProps) {
     initialize();
   }, [initialize]);
 
-    // LOGIN
-    const login = useCallback(async (email: string, password: string) => {
-      const response = await axios.post('/api/oauth/v1/authenticate', {
-        email,
-        password,
-      });
-      const { accessToken, user } = response.data;
+  // LOGIN
+  const login = useCallback(async (email: string, password: string) => {
+    const response = await axios.post('/api/oauth/v1/authenticate', {
+      email,
+      password
+    });
+    const { accessToken, user } = response.data;
 
-      setSession(accessToken);
+    setSession(accessToken);
 
-      dispatch({
-        type: Types.LOGIN,
-        payload: {
-          user,
-        },
-      });
-    }, []);
+    dispatch({
+      type: Types.LOGIN,
+      payload: {
+        user
+      }
+    });
+  }, []);
 
   // REGISTER
   const register = useCallback(
-    async (email: string, password: string, firstName: string, lastName: string) => {
+    async (
+      email: string,
+      password: string,
+      firstName: string,
+      lastName: string
+    ) => {
       const response = await axios.post('/api/account/register', {
         email,
         password,
         firstName,
-        lastName,
+        lastName
       });
       const { accessToken, user } = response.data;
 
@@ -170,8 +188,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       dispatch({
         type: Types.REGISTER,
         payload: {
-          user,
-        },
+          user
+        }
       });
     },
     []
@@ -181,7 +199,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const logout = useCallback(() => {
     setSession(null);
     dispatch({
-      type: Types.LOGOUT,
+      type: Types.LOGOUT
     });
   }, []);
 
@@ -196,10 +214,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
       loginWithGithub: () => {},
       loginWithTwitter: () => {},
       register,
-      logout,
+      logout
     }),
-    [state.isAuthenticated, state.isInitialized, state.user, login, logout, register]
+    [
+      state.isAuthenticated,
+      state.isInitialized,
+      state.user,
+      login,
+      logout,
+      register
+    ]
   );
 
-  return <AuthContext.Provider value={memoizedValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={memoizedValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
