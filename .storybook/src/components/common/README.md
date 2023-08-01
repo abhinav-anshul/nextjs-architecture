@@ -1,0 +1,1 @@
+common for generic components
